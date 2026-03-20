@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5 Industry 4.0 Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+    <div id="app" class="max-w-md mx-auto min-h-screen flex flex-col p-4">
+        <!-- Start Screen -->
+        <div id="start-screen" class="flex-1 flex flex-col justify-center items-center text-center">
+            <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1" /></svg>
+            </div>
+            <h1 class="text-2xl font-bold text-slate-800 mb-2">Unit 5: Industry 4.0</h1>
+            <p class="text-slate-500 mb-8 italic">50 Multiple Choice Questions</p>
+            <button onclick="startQuiz()" class="w-full bg-amber-500 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-amber-600 mb-6 transition-all">Start Quiz</button>
+            
+            <div class="w-full border-t border-slate-200 pt-6">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Other Units</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="index.html" class="bg-blue-50 text-blue-600 py-3 rounded-lg text-sm font-bold border border-blue-100">Unit 3 Quiz</a>
+                    <a href="unit4.html" class="bg-rose-50 text-rose-600 py-3 rounded-lg text-sm font-bold border border-rose-100">Unit 4 Quiz</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden flex-1 flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <span id="progress-text" class="text-xs font-bold text-slate-400">Q 1/50</span>
+                <span id="score-text" class="text-xs font-bold text-amber-600">Score: 0</span>
+            </div>
+            <div class="h-1.5 w-full bg-slate-200 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="h-full bg-amber-500 transition-all duration-300" style="width: 2%"></div>
+            </div>
+            <h2 id="question-text" class="text-lg font-bold text-slate-800 mb-6"></h2>
+            <div id="options-container" class="space-y-3 mb-6"></div>
+            <div id="explanation-box" class="hidden mb-6 p-4 bg-slate-900 rounded-xl text-slate-300 text-sm italic"></div>
+            <button id="next-btn" onclick="nextQuestion()" class="hidden w-full bg-slate-800 text-white py-4 rounded-xl font-bold mt-auto">Next Question</button>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="hidden flex-1 flex flex-col justify-center items-center text-center">
+            <h2 class="text-2xl font-bold mb-6">Unit 5 Results</h2>
+            <div class="bg-white p-10 rounded-3xl border border-slate-200 w-full mb-8">
+                <p id="final-score" class="text-5xl font-black text-amber-600 mb-2">0</p>
+                <p class="text-sm font-bold text-slate-400">Correct out of 50</p>
+            </div>
+            <button onclick="location.reload()" class="w-full bg-slate-100 text-slate-600 py-4 rounded-xl font-bold mb-4">Retry Unit 5</button>
+            <a href="index.html" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-center">Main Menu (Unit 3) →</a>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "What does Industry 4.0 refer to?", options: ["Steam engines", "Mass production/Electricity", "Digital automation", "Computers"], a: 2, e: "Current trend of automation and data exchange." },
+            { q: "Revolution with assembly lines:", options: ["1.0", "2.0", "3.0", "4.0"], a: 1, e: "Second Industrial Revolution introduced mass production." },
+            { q: "Key pillar of Industry 4.0:", options: ["Punched cards", "IoT", "Typewriters", "Vacuum tubes"], a: 1, e: "Internet of Things is core to connectivity." },
+            { q: "CPS stands for:", options: ["Power System", "Cyber-Physical Systems", "Processing", "Production"], a: 1, e: "Integrates computation and physical processes." },
+            { q: "5G for high-speed broadband:", options: ["mMTC", "URLLC", "eMBB", "D2D"], a: 2, e: "Enhanced Mobile Broadband." },
+            { q: "5G for autonomous vehicles:", options: ["eMBB", "mMTC", "URLLC", "IoT"], a: 2, e: "Ultra-Reliable Low Latency Communications." },
+            { q: "mMTC is for:", options: ["HD video", "Massive low-power devices", "Self-driving", "Remote desktop"], a: 1, e: "Massive Machine Type Communications." },
+            { q: "Smart Factory is:", options: ["Many workers", "Self-optimizing connected machines", "Phones only", "No machines"], a: 1, e: "Uses data and AI to run production." },
+            { q: "Virtual representation of object:", options: ["Digital Twin", "VR", "Hologram", "Simulator"], a: 0, e: "Real-time digital counterpart." },
+            { q: "Industry 3.0 characterization:", options: ["Steam", "Robotics/Computers", "AI/IoT", "Assembly lines"], a: 1, e: "Automation via electronics/IT." },
+            { q: "Additive Manufacturing is:", options: ["Subtractive", "3D Printing", "Molding", "Casting"], a: 1, e: "Building objects layer-by-layer." },
+            { q: "Benefit of Industry 4.0:", options: ["Manual labor", "Reduced efficiency", "Productivity/Flexibility", "Higher costs"], a: 2, e: "Optimizes manufacturing output." },
+            { q: "Integration across supply chain:", options: ["Horizontal", "Vertical", "Diagonal", "Circular"], a: 0, e: "Connects value chain stages." },
+            { q: "Integration within factory levels:", options: ["Horizontal", "Vertical", "Layered", "Unit"], a: 1, e: "Connects shop floor to ERP." },
+            { q: "Processing data near source:", options: ["Mainframe", "Edge Computing", "Quantum", "Super"], a: 1, e: "Reduces latency for fast responses." },
+            { q: "Big Data Analytics use:", options: ["Coding", "Predicting failures", "Sheets", "Web"], a: 1, e: "Optimizes operations via data patterns." },
+            { q: "Robot working with humans:", options: ["Industrial", "Cobot", "Android", "Drone"], a: 1, e: "Collaborative Robot." },
+            { q: "Machines talking to machines:", options: ["M2M", "B2B", "C2C", "P2P"], a: 0, e: "Machine-to-Machine communication." },
+            { q: "Predictive Maintenance is:", options: ["Fix after break", "Repairs before failure", "No fixing", "New machines"], a: 1, e: "Uses data to avoid downtime." },
+            { q: "5G Virtual networks feature:", options: ["Network Slicing", "Fencing", "Beamforming", "MIMO"], a: 0, e: "Logical partitioning of network." },
+            { q: "Smart Logistics involves:", options: ["Manual counting", "Real-time tracking", "Ships only", "Avoiding tech"], a: 1, e: "IoT-based warehouse management." },
+            { q: "AR in maintenance is:", options: ["Smart glasses instructions", "Manuals", "Phone", "Paper map"], a: 0, e: "Augments real-world with digital info." },
+            { q: "IIoT stands for:", options: ["Internal", "Industrial IoT", "Integrated", "Intelligent"], a: 1, e: "IoT used in industrial sectors." },
+            { q: "System functioning after failure:", options: ["Scalability", "Resilience", "Transparency", "Velocity"], a: 1, e: "Ability to recover/continue." },
+            { q: "Precision Agriculture uses:", options: ["Finance", "Healthcare", "Farming", "Education"], a: 2, e: "IoT for optimized crop yield." },
+            { q: "Cloud computing provides:", options: ["Storage only", "On-demand power/storage", "Internet only", "Hardware"], a: 1, e: "Scalable compute for big data." },
+            { q: "Industry 4.0 challenge:", options: ["Lack of data", "High cost/Cyber risk", "Cheap machines", "No computers"], a: 1, e: "Investment and security barriers." },
+            { q: "Smart City uses tech to:", options: ["Build houses", "Optimize services", "Reduce people", "Old look"], a: 1, e: "Improve urban efficiency." },
+            { q: "Radio wave identification:", options: ["GPS", "RFID", "Bluetooth", "Wi-Fi"], a: 1, e: "For inventory tracking." },
+            { q: "Industrial 3D printing best for:", options: ["Billion items", "Rapid prototyping", "Paper", "Casting"], a: 1, e: "Custom/complex part creation." },
+            { q: "Mass Customization is:", options: ["One for all", "Custom goods at mass speed", "Luxury only", "Slow speed"], a: 1, e: "Personalization via digital tech." },
+            { q: "5G directing signal to user:", options: ["Slicing", "Beamforming", "Connectivity", "Small Cells"], a: 1, e: "Focuses signal for better strength." },
+            { q: "Digital supply chains increase:", options: ["Paperwork", "Transparency", "Delays", "Costs"], a: 1, e: "Real-time visibility." },
+            { q: "Interoperability means:", options: ["Moved easily", "Connect and communicate", "Never fail", "Free"], a: 1, e: "Systems working together." },
+            { q: "Decentralized decisions made by:", options: ["CEO", "CPS", "Workers", "Gov"], a: 1, e: "Autonomous Cyber-Physical Systems." },
+            { q: "Mobile network for low latency:", options: ["2G", "3G", "4G", "5G"], a: 3, e: "5G offers ultra-low latency." },
+            { q: "Virtual Commissioning is:", options: ["Buying online", "Testing simulation", "Virtual hiring", "Delete"], a: 1, e: "Verifying lines before build." },
+            { q: "Smart Energy Management:", options: ["Off lights", "Optimize via AI/Sensors", "Coal", "Increase cost"], a: 1, e: "Reduces industrial power waste." },
+            { q: "Measure machine vibration:", options: ["Thermometer", "Accelerometer", "Barometer", "Hygrometer"], a: 1, e: "Detects mechanical wear." },
+            { q: "Blockchain in Ind 4.0:", options: ["Speed", "Secure supply tracking", "Money", "Delete"], a: 1, e: "Immutable transaction logs." },
+            { q: "Lights-out Manufacturing:", options: ["Power cut", "No humans needed", "No windows", "Night only"], a: 1, e: "Full machine automation." },
+            { q: "Many antennas feature:", options: ["Small Cells", "Massive MIMO", "Fiber", "Sub-6"], a: 1, e: "Boosts throughput capacity." },
+            { q: "Twin update on object change:", options: ["None", "Automatic via sensors", "Delete", "Color"], a: 1, e: "Physical and digital sync." },
+            { q: "Cognitive Computing:", options: ["Learn like humans", "Calculators", "Hardware", "Entry"], a: 0, e: "AI simulating thought." },
+            { q: "Manufacturing reducing waste:", options: ["Traditional", "Lean", "Heavy", "Manual"], a: 1, e: "Efficiency-focused principles." },
+            { q: "OEE is:", options: ["Equipment Effectiveness", "Energy", "Engineering", "Engine"], a: 0, e: "Equipment utilization metric." },
+            { q: "Cybersecurity difficulty:", options: ["Old machines", "IT and OT mix", "No computers", "Expense"], a: 1, e: "Managing physical and digital risk." },
+            { q: "Remote factory monitoring:", options: ["Cables", "Cloud/IoT", "Analog", "Phones"], a: 1, e: "Dashboards from anywhere." },
+            { q: "PLM is:", options: ["Product Life Management", "Lifecycle Management", "Power", "Plant"], a: 1, e: "Design to service management." },
+            { q: "Industry 1.0 driven by:", options: ["Electricity", "Steam/Water Power", "Electronics", "Internet"], a: 1, e: "Mechanization era." }
+        ];
+
+        let currentIdx = 0, score = 0, answered = false;
+        function startQuiz() { document.getElementById('start-screen').classList.add('hidden'); document.getElementById('quiz-screen').classList.remove('hidden'); loadQuestion(); }
+        function loadQuestion() {
+            const q = questions[currentIdx];
+            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('progress-text').innerText = `Q ${currentIdx + 1}/50`;
+            document.getElementById('progress-bar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
+            const container = document.getElementById('options-container'); container.innerHTML = '';
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-100 hover:border-amber-200 hover:bg-amber-50 text-sm font-medium transition-all";
+                btn.innerText = opt; btn.onclick = () => selectOption(i, btn); container.appendChild(btn);
+            });
+            document.getElementById('explanation-box').classList.add('hidden'); document.getElementById('next-btn').classList.add('hidden'); answered = false;
+        }
+        function selectOption(idx, btn) {
+            if (answered) return; answered = true; const q = questions[currentIdx];
+            const allBtns = document.querySelectorAll('#options-container button');
+            if (idx === q.a) { score++; btn.classList.add('border-green-500', 'bg-green-50', 'text-green-700'); document.getElementById('score-text').innerText = `Score: ${score}`; }
+            else { btn.classList.add('border-red-500', 'bg-red-50', 'text-red-700'); allBtns[q.a].classList.add('border-green-500', 'bg-green-50', 'text-green-700'); }
+            document.getElementById('explanation-box').innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+            document.getElementById('explanation-box').classList.remove('hidden'); document.getElementById('next-btn').classList.remove('hidden');
+        }
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) { currentIdx++; loadQuestion(); }
+            else { document.getElementById('quiz-screen').classList.add('hidden'); document.getElementById('result-screen').classList.remove('hidden'); document.getElementById('final-score').innerText = score; }
+        }
+    </script>
+</body>
+</html>
