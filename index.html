@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 5 Industry 4.0 Quiz</title>
+    <title>Unit 5 Immersive Technologies Quiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -14,129 +14,289 @@
     <div id="app" class="max-w-md mx-auto min-h-screen flex flex-col p-4">
         <!-- Start Screen -->
         <div id="start-screen" class="flex-1 flex flex-col justify-center items-center text-center">
-            <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1" /></svg>
+            <div class="w-24 h-24 bg-emerald-100 rounded-3xl flex items-center justify-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
             </div>
-            <h1 class="text-2xl font-bold text-slate-800 mb-2">Unit 5: Industry 4.0</h1>
-            <p class="text-slate-500 mb-8 italic">50 Multiple Choice Questions</p>
-            <button onclick="startQuiz()" class="w-full bg-amber-500 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-amber-600 mb-6 transition-all">Start Quiz</button>
-            
-            <div class="w-full border-t border-slate-200 pt-6">
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Other Units</p>
-                <div class="grid grid-cols-2 gap-3">
-                    <a href="index.html" class="bg-blue-50 text-blue-600 py-3 rounded-lg text-sm font-bold border border-blue-100">Unit 3 Quiz</a>
-                    <a href="unit4.html" class="bg-rose-50 text-rose-600 py-3 rounded-lg text-sm font-bold border border-rose-100">Unit 4 Quiz</a>
-                </div>
-            </div>
+            <h1 class="text-3xl font-bold text-slate-800 mb-2">Unit 5 Quiz</h1>
+            <p class="text-slate-500 mb-8 font-medium italic">Immersive Technologies (150 MCQs)</p>
+            <button onclick="startQuiz()" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-emerald-700 mb-4 transition-colors">Start Solving</button>
+            <a href="index.html" class="text-emerald-600 font-bold underline hover:text-emerald-800 transition-colors">← Go back</a>
         </div>
 
         <!-- Quiz Screen -->
         <div id="quiz-screen" class="hidden flex-1 flex flex-col">
-            <div class="flex justify-between items-center mb-4">
-                <span id="progress-text" class="text-xs font-bold text-slate-400">Q 1/50</span>
-                <span id="score-text" class="text-xs font-bold text-amber-600">Score: 0</span>
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="progress-text" class="text-xs font-bold text-slate-400 uppercase tracking-widest">Question 1/150</span>
+                    <span id="score-text" class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-xs font-bold">Score: 0</span>
+                </div>
+                <div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden"><div id="progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 2%"></div></div>
             </div>
-            <div class="h-1.5 w-full bg-slate-200 rounded-full mb-6 overflow-hidden">
-                <div id="progress-bar" class="h-full bg-amber-500 transition-all duration-300" style="width: 2%"></div>
-            </div>
-            <h2 id="question-text" class="text-lg font-bold text-slate-800 mb-6"></h2>
+            <h2 id="question-text" class="text-xl font-bold text-slate-800 mb-6 leading-snug"></h2>
             <div id="options-container" class="space-y-3 mb-6"></div>
-            <div id="explanation-box" class="hidden mb-6 p-4 bg-slate-900 rounded-xl text-slate-300 text-sm italic"></div>
-            <button id="next-btn" onclick="nextQuestion()" class="hidden w-full bg-slate-800 text-white py-4 rounded-xl font-bold mt-auto">Next Question</button>
+            <div id="explanation-box" class="hidden mb-6 p-4 bg-slate-900 rounded-2xl text-slate-300 text-sm italic border-l-4 border-emerald-500"></div>
+            <button id="next-btn" onclick="nextQuestion()" class="hidden w-full bg-slate-800 text-white py-4 rounded-2xl font-bold text-lg shadow-md mt-auto hover:bg-slate-700 transition-colors">Next Question</button>
         </div>
 
         <!-- Result Screen -->
         <div id="result-screen" class="hidden flex-1 flex flex-col justify-center items-center text-center">
-            <h2 class="text-2xl font-bold mb-6">Unit 5 Results</h2>
-            <div class="bg-white p-10 rounded-3xl border border-slate-200 w-full mb-8">
-                <p id="final-score" class="text-5xl font-black text-amber-600 mb-2">0</p>
-                <p class="text-sm font-bold text-slate-400">Correct out of 50</p>
+            <h2 class="text-3xl font-black text-slate-800 mb-8">Results</h2>
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 w-full mb-8">
+                <p id="final-score" class="text-6xl font-black text-emerald-600 mb-2">0</p>
+                <p id="final-total" class="text-xs font-bold text-slate-400 uppercase">Correct out of 150</p>
             </div>
-            <button onclick="location.reload()" class="w-full bg-slate-100 text-slate-600 py-4 rounded-xl font-bold mb-4">Retry Unit 5</button>
-            <a href="index.html" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-center">Main Menu (Unit 3) →</a>
+            <button onclick="location.reload()" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold mb-4 hover:bg-slate-800 transition-colors">Retry Quiz</button>
+            <a href="index.html" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-center hover:bg-emerald-700 transition-colors">← Home</a>
         </div>
     </div>
 
     <script>
+        // Note: The correct answer is placed at index 0 for every question. 
+        // The startQuiz() function dynamically shuffles the options so the user sees a random order.
         const questions = [
-            { q: "What does Industry 4.0 refer to?", options: ["Steam engines", "Mass production/Electricity", "Digital automation", "Computers"], a: 2, e: "Current trend of automation and data exchange." },
-            { q: "Revolution with assembly lines:", options: ["1.0", "2.0", "3.0", "4.0"], a: 1, e: "Second Industrial Revolution introduced mass production." },
-            { q: "Key pillar of Industry 4.0:", options: ["Punched cards", "IoT", "Typewriters", "Vacuum tubes"], a: 1, e: "Internet of Things is core to connectivity." },
-            { q: "CPS stands for:", options: ["Power System", "Cyber-Physical Systems", "Processing", "Production"], a: 1, e: "Integrates computation and physical processes." },
-            { q: "5G for high-speed broadband:", options: ["mMTC", "URLLC", "eMBB", "D2D"], a: 2, e: "Enhanced Mobile Broadband." },
-            { q: "5G for autonomous vehicles:", options: ["eMBB", "mMTC", "URLLC", "IoT"], a: 2, e: "Ultra-Reliable Low Latency Communications." },
-            { q: "mMTC is for:", options: ["HD video", "Massive low-power devices", "Self-driving", "Remote desktop"], a: 1, e: "Massive Machine Type Communications." },
-            { q: "Smart Factory is:", options: ["Many workers", "Self-optimizing connected machines", "Phones only", "No machines"], a: 1, e: "Uses data and AI to run production." },
-            { q: "Virtual representation of object:", options: ["Digital Twin", "VR", "Hologram", "Simulator"], a: 0, e: "Real-time digital counterpart." },
-            { q: "Industry 3.0 characterization:", options: ["Steam", "Robotics/Computers", "AI/IoT", "Assembly lines"], a: 1, e: "Automation via electronics/IT." },
-            { q: "Additive Manufacturing is:", options: ["Subtractive", "3D Printing", "Molding", "Casting"], a: 1, e: "Building objects layer-by-layer." },
-            { q: "Benefit of Industry 4.0:", options: ["Manual labor", "Reduced efficiency", "Productivity/Flexibility", "Higher costs"], a: 2, e: "Optimizes manufacturing output." },
-            { q: "Integration across supply chain:", options: ["Horizontal", "Vertical", "Diagonal", "Circular"], a: 0, e: "Connects value chain stages." },
-            { q: "Integration within factory levels:", options: ["Horizontal", "Vertical", "Layered", "Unit"], a: 1, e: "Connects shop floor to ERP." },
-            { q: "Processing data near source:", options: ["Mainframe", "Edge Computing", "Quantum", "Super"], a: 1, e: "Reduces latency for fast responses." },
-            { q: "Big Data Analytics use:", options: ["Coding", "Predicting failures", "Sheets", "Web"], a: 1, e: "Optimizes operations via data patterns." },
-            { q: "Robot working with humans:", options: ["Industrial", "Cobot", "Android", "Drone"], a: 1, e: "Collaborative Robot." },
-            { q: "Machines talking to machines:", options: ["M2M", "B2B", "C2C", "P2P"], a: 0, e: "Machine-to-Machine communication." },
-            { q: "Predictive Maintenance is:", options: ["Fix after break", "Repairs before failure", "No fixing", "New machines"], a: 1, e: "Uses data to avoid downtime." },
-            { q: "5G Virtual networks feature:", options: ["Network Slicing", "Fencing", "Beamforming", "MIMO"], a: 0, e: "Logical partitioning of network." },
-            { q: "Smart Logistics involves:", options: ["Manual counting", "Real-time tracking", "Ships only", "Avoiding tech"], a: 1, e: "IoT-based warehouse management." },
-            { q: "AR in maintenance is:", options: ["Smart glasses instructions", "Manuals", "Phone", "Paper map"], a: 0, e: "Augments real-world with digital info." },
-            { q: "IIoT stands for:", options: ["Internal", "Industrial IoT", "Integrated", "Intelligent"], a: 1, e: "IoT used in industrial sectors." },
-            { q: "System functioning after failure:", options: ["Scalability", "Resilience", "Transparency", "Velocity"], a: 1, e: "Ability to recover/continue." },
-            { q: "Precision Agriculture uses:", options: ["Finance", "Healthcare", "Farming", "Education"], a: 2, e: "IoT for optimized crop yield." },
-            { q: "Cloud computing provides:", options: ["Storage only", "On-demand power/storage", "Internet only", "Hardware"], a: 1, e: "Scalable compute for big data." },
-            { q: "Industry 4.0 challenge:", options: ["Lack of data", "High cost/Cyber risk", "Cheap machines", "No computers"], a: 1, e: "Investment and security barriers." },
-            { q: "Smart City uses tech to:", options: ["Build houses", "Optimize services", "Reduce people", "Old look"], a: 1, e: "Improve urban efficiency." },
-            { q: "Radio wave identification:", options: ["GPS", "RFID", "Bluetooth", "Wi-Fi"], a: 1, e: "For inventory tracking." },
-            { q: "Industrial 3D printing best for:", options: ["Billion items", "Rapid prototyping", "Paper", "Casting"], a: 1, e: "Custom/complex part creation." },
-            { q: "Mass Customization is:", options: ["One for all", "Custom goods at mass speed", "Luxury only", "Slow speed"], a: 1, e: "Personalization via digital tech." },
-            { q: "5G directing signal to user:", options: ["Slicing", "Beamforming", "Connectivity", "Small Cells"], a: 1, e: "Focuses signal for better strength." },
-            { q: "Digital supply chains increase:", options: ["Paperwork", "Transparency", "Delays", "Costs"], a: 1, e: "Real-time visibility." },
-            { q: "Interoperability means:", options: ["Moved easily", "Connect and communicate", "Never fail", "Free"], a: 1, e: "Systems working together." },
-            { q: "Decentralized decisions made by:", options: ["CEO", "CPS", "Workers", "Gov"], a: 1, e: "Autonomous Cyber-Physical Systems." },
-            { q: "Mobile network for low latency:", options: ["2G", "3G", "4G", "5G"], a: 3, e: "5G offers ultra-low latency." },
-            { q: "Virtual Commissioning is:", options: ["Buying online", "Testing simulation", "Virtual hiring", "Delete"], a: 1, e: "Verifying lines before build." },
-            { q: "Smart Energy Management:", options: ["Off lights", "Optimize via AI/Sensors", "Coal", "Increase cost"], a: 1, e: "Reduces industrial power waste." },
-            { q: "Measure machine vibration:", options: ["Thermometer", "Accelerometer", "Barometer", "Hygrometer"], a: 1, e: "Detects mechanical wear." },
-            { q: "Blockchain in Ind 4.0:", options: ["Speed", "Secure supply tracking", "Money", "Delete"], a: 1, e: "Immutable transaction logs." },
-            { q: "Lights-out Manufacturing:", options: ["Power cut", "No humans needed", "No windows", "Night only"], a: 1, e: "Full machine automation." },
-            { q: "Many antennas feature:", options: ["Small Cells", "Massive MIMO", "Fiber", "Sub-6"], a: 1, e: "Boosts throughput capacity." },
-            { q: "Twin update on object change:", options: ["None", "Automatic via sensors", "Delete", "Color"], a: 1, e: "Physical and digital sync." },
-            { q: "Cognitive Computing:", options: ["Learn like humans", "Calculators", "Hardware", "Entry"], a: 0, e: "AI simulating thought." },
-            { q: "Manufacturing reducing waste:", options: ["Traditional", "Lean", "Heavy", "Manual"], a: 1, e: "Efficiency-focused principles." },
-            { q: "OEE is:", options: ["Equipment Effectiveness", "Energy", "Engineering", "Engine"], a: 0, e: "Equipment utilization metric." },
-            { q: "Cybersecurity difficulty:", options: ["Old machines", "IT and OT mix", "No computers", "Expense"], a: 1, e: "Managing physical and digital risk." },
-            { q: "Remote factory monitoring:", options: ["Cables", "Cloud/IoT", "Analog", "Phones"], a: 1, e: "Dashboards from anywhere." },
-            { q: "PLM is:", options: ["Product Life Management", "Lifecycle Management", "Power", "Plant"], a: 1, e: "Design to service management." },
-            { q: "Industry 1.0 driven by:", options: ["Electricity", "Steam/Water Power", "Electronics", "Internet"], a: 1, e: "Mechanization era." }
+            // 1-30: Fundamentals of AR, VR, MR, XR
+            { q: "What does the term 'XR' stand for?", options: ["Extended Reality", "Extra Reality", "External Reality", "Extreme Reality"], a: 0, e: "XR (Extended Reality) is the umbrella term for VR, AR, and MR." },
+            { q: "Which technology completely replaces the user's real-world environment with a simulated one?", options: ["Virtual Reality (VR)", "Augmented Reality (AR)", "Mixed Reality (MR)", "Assisted Reality"], a: 0, e: "VR uses headsets to block out the physical world and immerse the user in a digital environment." },
+            { q: "Which technology simply overlays digital information onto the real-world view without deep interaction?", options: ["Augmented Reality (AR)", "Mixed Reality (MR)", "Virtual Reality (VR)", "Cinematic VR"], a: 0, e: "AR adds digital elements to a live view, usually via a smartphone camera." },
+            { q: "In which technology do digital and physical objects co-exist and interact in real-time?", options: ["Mixed Reality (MR)", "Virtual Reality (VR)", "3D Video", "Augmented Reality (AR)"], a: 0, e: "MR merges real and virtual worlds, allowing physical and digital objects to interact." },
+            { q: "What describes the feeling of 'being there' in a virtual environment?", options: ["Presence", "Latency", "Tracking", "Rendering"], a: 0, e: "Presence is the psychological sensation of actually existing inside the virtual space." },
+            { q: "What does 'Immersion' refer to in VR?", options: ["The objective level of sensory fidelity provided by the system", "The physical hardware used", "The speed of the internet connection", "The subjective feeling of the user"], a: 0, e: "Immersion is the technical capability of the system to deliver realistic sensory inputs." },
+            { q: "Pokémon GO is the most famous mainstream example of which technology?", options: ["Augmented Reality (AR)", "Virtual Reality (VR)", "Mixed Reality (MR)", "Holographic Projection"], a: 0, e: "Pokémon GO overlays digital creatures onto the real world using the phone's camera." },
+            { q: "Who introduced the 'Reality-Virtuality Continuum'?", options: ["Paul Milgram", "Satoshi Nakamoto", "Mark Zuckerberg", "Palmer Luckey"], a: 0, e: "Paul Milgram defined the continuum scaling from completely real to completely virtual environments." },
+            { q: "Where does Augmented Reality sit on Milgram’s Reality-Virtuality Continuum?", options: ["Closer to the real environment", "At the extreme virtual end", "Exactly in the middle", "Outside the continuum"], a: 0, e: "AR is closer to reality because the primary view is the physical world." },
+            { q: "Where does Augmented Virtuality (AV) sit on the Continuum?", options: ["Closer to the virtual environment", "Closer to the real environment", "At the extreme real end", "Outside the continuum"], a: 0, e: "AV is primarily virtual but integrates real-world objects into the digital space." },
+            { q: "What does 'FOV' stand for in immersive tech?", options: ["Field of View", "Frequency of Vision", "Focus on Vectors", "Frame of Verification"], a: 0, e: "Field of View (FOV) refers to the extent of the observable world seen at any moment." },
+            { q: "Why is a wider Field of View (FOV) preferred in VR?", options: ["It creates a greater sense of immersion by engaging peripheral vision", "It prevents motion sickness completely", "It lowers the processing power required", "It reduces the weight of the headset"], a: 0, e: "A wide FOV mimics human vision, tricking the brain into feeling immersed." },
+            { q: "What is 'Latency' in VR?", options: ["The delay between a user's physical movement and the visual update on the screen", "The battery life of the device", "The time it takes to download a VR app", "The resolution of the display"], a: 0, e: "High latency causes visual lag, which is the primary cause of VR motion sickness." },
+            { q: "What is the recommended maximum latency (motion-to-photon) for a comfortable VR experience?", options: ["20 milliseconds", "100 milliseconds", "500 milliseconds", "1 second"], a: 0, e: "Latency must be under 20ms to prevent the brain from noticing the delay and getting nauseous." },
+            { q: "What does an 'HMD' refer to?", options: ["Head-Mounted Display", "Holographic Motion Detector", "Hardware Mapping Device", "Haptic Movement Dynamics"], a: 0, e: "An HMD is the physical headset worn by the user in VR or MR." },
+            { q: "What is 'Stereoscopy'?", options: ["Displaying a slightly different image to each eye to create depth perception", "Recording audio from 360 degrees", "Tracking hand movements", "Increasing the frame rate"], a: 0, e: "Stereoscopy mimics human binocular vision to create a 3D effect from 2D screens." },
+            { q: "Non-immersive VR is best described as:", options: ["Interacting with a 3D environment through a standard 2D flat monitor", "Using a VR headset without sound", "A fully enclosed sensory experience", "AR technology on a phone"], a: 0, e: "Non-immersive VR (like playing a 3D PC game) lacks the sensory enclosure of a headset." },
+            { q: "Semi-immersive VR is commonly used for:", options: ["Flight simulators with physical cockpits and large projector screens", "Smartphone gaming", "Text-based coding", "Listening to podcasts"], a: 0, e: "Semi-immersive systems combine physical props with immersive screens, common in high-end training." },
+            { q: "Fully-immersive VR requires which of the following?", options: ["A Head-Mounted Display (HMD) that blocks out the real world", "A standard laptop", "A physical cockpit", "A mobile phone camera"], a: 0, e: "Full immersion requires visual and auditory isolation from the physical environment." },
+            { q: "What is the 'Refresh Rate' of a VR display?", options: ["How many times per second the display updates the image (measured in Hz)", "How fast the battery charges", "The speed of the internet connection", "The volume of the spatial audio"], a: 0, e: "High refresh rates (90Hz+) are essential to prevent visual stutter and motion sickness." },
+            { q: "What is 'IPD'?", options: ["Inter-Pupillary Distance", "Internet Protocol Data", "Internal Processing Display", "Image Pixel Density"], a: 0, e: "IPD is the distance between your pupils. Adjusting the headset to match your IPD prevents eye strain." },
+            { q: "What happens if a VR headset's IPD is set incorrectly?", options: ["The image appears blurry and causes visual fatigue", "The battery drains faster", "The sound stops working", "The controllers disconnect"], a: 0, e: "Incorrect IPD means you aren't looking through the 'sweet spot' of the lenses." },
+            { q: "Which mapping technique translates physical walking into virtual walking?", options: ["Room-scale tracking", "Teleportation", "Joystick locomotion", "Static routing"], a: 0, e: "Room-scale allows the system to map a physical space so the user can physically walk around inside the game." },
+            { q: "What is 'Teleportation' in VR locomotion?", options: ["Pointing to a location and instantly jumping there to prevent motion sickness", "Walking physically in a room", "Moving continuously using a joystick", "Running on a treadmill"], a: 0, e: "Teleportation bypasses the inner ear's motion detection, making it the most comfortable way to move in VR." },
+            { q: "What is an omnidirectional treadmill used for?", options: ["Allowing a user to physically walk or run in any direction while staying in one place", "Charging the headset", "Tracking eye movements", "Improving Wi-Fi signals"], a: 0, e: "These treadmills solve the physical space limitation, allowing infinite virtual movement." },
+            { q: "What is 'Cybersickness'?", options: ["Motion sickness caused by a mismatch between visual motion and physical motion in VR", "A virus on a computer", "Eye strain from blue light", "A fear of technology"], a: 0, e: "Cybersickness occurs when your eyes tell your brain you are moving, but your inner ear feels no movement." },
+            { q: "What does 'Vergence-Accommodation Conflict' (VAC) cause?", options: ["Eye strain because eyes focus on a fixed screen distance but converge on objects appearing far away", "The headset to turn off", "Audio delay", "Controller tracking loss"], a: 0, e: "VAC is a primary biological challenge in stereoscopic displays causing visual fatigue." },
+            { q: "What does the 'Screen Door Effect' (SDE) look like?", options: ["Visible unlit spaces between pixels, looking like a mesh screen", "The screen goes completely black", "Colors appear washed out", "Virtual objects clipping through walls"], a: 0, e: "SDE was common in early low-resolution headsets where the grid of pixels was easily visible." },
+            { q: "How do manufacturers eliminate the Screen Door Effect?", options: ["By significantly increasing the display resolution (pixel density)", "By making screens smaller", "By turning off the brightness", "By using better audio"], a: 0, e: "Higher resolution displays pack pixels so closely together that the gaps disappear." },
+            { q: "What is 'Asynchronous SpaceWarp' (ASW)?", options: ["A technique that generates synthetic frames when the PC drops frames, preventing stutter", "A sci-fi game feature", "A way to warp physical space", "A type of VR lens"], a: 0, e: "ASW artificially keeps the visual experience smooth even if the hardware struggles to hit 90 FPS." },
+
+            // 31-60: Tracking, DoF, and Spatial Mapping
+            { q: "What does 'DoF' stand for?", options: ["Degrees of Freedom", "Depth of Field", "Direction of Force", "Data of Frames"], a: 0, e: "DoF refers to the number of ways a rigid object can move through 3D space." },
+            { q: "How many Degrees of Freedom (DoF) are required to track both rotation and physical position?", options: ["6 DoF", "3 DoF", "2 DoF", "9 DoF"], a: 0, e: "6 DoF tracks rotation (pitch, yaw, roll) and position (up/down, left/right, forward/backward)." },
+            { q: "A VR headset that only tracks where you look (Pitch, Yaw, Roll) is classified as:", options: ["3 DoF", "6 DoF", "0 DoF", "Full DoF"], a: 0, e: "3 DoF only tracks rotational movements from a fixed point (e.g., Google Cardboard)." },
+            { q: "If you can physically duck to avoid a virtual laser, your headset supports:", options: ["6 DoF", "3 DoF", "2 DoF", "1 DoF"], a: 0, e: "Ducking requires positional tracking along the Y-axis, which necessitates 6 DoF." },
+            { q: "What is an IMU?", options: ["Inertial Measurement Unit", "Internal Measurement Unit", "Image Mapping Utility", "Integrated Motion Unit"], a: 0, e: "The IMU combines a gyroscope, accelerometer, and magnetometer to track basic movements." },
+            { q: "Which sensor detects the rotational motion of a headset?", options: ["Gyroscope", "Thermometer", "Barometer", "Proximity sensor"], a: 0, e: "Gyroscopes detect rotational movements (pitch, yaw, roll)." },
+            { q: "Which sensor detects linear acceleration (speeding up or slowing down)?", options: ["Accelerometer", "Magnetometer", "Camera", "GPS"], a: 0, e: "Accelerometers detect changes in velocity and physical movement." },
+            { q: "What does 'Inside-Out Tracking' mean?", options: ["Cameras built into the headset look outward to map the room and track position", "Cameras placed around the room track the headset", "Tracking the inside of the user's eyes", "Tracking done outdoors"], a: 0, e: "Inside-out tracking requires no external sensors; the headset figures out its own position." },
+            { q: "What does 'Outside-In Tracking' mean?", options: ["External sensors or cameras placed in the room tracking the headset's position", "Cameras on the headset looking out", "Tracking the weather outside", "Using GPS only"], a: 0, e: "Outside-in tracking uses external emitters/sensors looking inward at the user (like HTC Vive lighthouses)." },
+            { q: "What is a major advantage of Inside-Out tracking?", options: ["It requires no setup of external sensors, making the system highly portable", "It is 100% flawless with no dead zones", "It requires a massive PC", "It only works in the dark"], a: 0, e: "Headsets like the Meta Quest use inside-out tracking so users can play anywhere." },
+            { q: "Which tracking system suffers most from 'Occlusion' (e.g., losing controller tracking behind the back)?", options: ["Inside-out tracking (Camera-based)", "Outside-in tracking", "Magnetic tracking", "GPS tracking"], a: 0, e: "If the headset's cameras can't see the controllers behind your back, tracking is temporarily lost." },
+            { q: "What do 'Base Stations' or 'Lighthouses' do?", options: ["Sweep the room with invisible lasers/IR light to track sensors on the headset", "Project Wi-Fi signals", "Provide power wirelessly", "Record audio"], a: 0, e: "Base stations act as external reference points for outside-in tracking systems." },
+            { q: "What is SLAM?", options: ["Simultaneous Localization and Mapping", "Simulated Local Area Mapping", "System Log and Monitoring", "Spatial Location and Measurement"], a: 0, e: "SLAM is the algorithm that allows a device to map its environment and track its position within it simultaneously." },
+            { q: "Why is SLAM critical for advanced AR?", options: ["It maps physical planes so AR objects sit on them naturally without floating away", "It lowers battery usage", "It translates languages", "It records audio"], a: 0, e: "SLAM understands the geometry of the room, enabling accurate placement of holograms." },
+            { q: "What is 'Marker-based AR'?", options: ["AR that relies on scanning specific visual patterns (like QR codes) to trigger content", "AR that uses GPS", "AR that maps the room without images", "AR that projects light"], a: 0, e: "Marker-based AR requires a physical visual trigger for the camera to anchor content." },
+            { q: "What is 'Markerless AR'?", options: ["AR that uses sensors to map the environment and place objects anywhere, without needing a specific image trigger", "AR that relies on barcodes", "AR that only works in VR", "AR that uses projectors"], a: 0, e: "Markerless AR uses SLAM to detect floors and walls dynamically." },
+            { q: "Location-based AR relies primarily on which technology?", options: ["GPS, Compass, and Accelerometer", "Bluetooth only", "Infrared sensors", "QR Codes"], a: 0, e: "Location-based AR uses geographic coordinates to overlay information (e.g., Google Maps Live View)." },
+            { q: "What is 'Projection-based AR'?", options: ["Projecting artificial light onto physical surfaces and sensing human interaction with it", "Snapchat face filters", "Pokémon GO", "GPS navigation"], a: 0, e: "This projects digital interfaces directly onto tables or walls without the user wearing glasses." },
+            { q: "What does Superimposition AR do?", options: ["Partially or fully replaces the original view of a recognized object with an augmented view", "Creates a fully virtual room", "Projects holograms in mid-air", "Uses GPS to find locations"], a: 0, e: "Superimposition recognizes an object and overlays a model over it, like an X-ray view of a car engine." },
+            { q: "Snapchat and Instagram face filters are examples of which AR technique?", options: ["Facial recognition and tracking AR", "Location-based AR", "Projection-based AR", "VR"], a: 0, e: "These apps track facial landmarks in real-time to anchor digital overlays." },
+            { q: "What is 'Spatial Mapping'?", options: ["The process where an MR device creates a 3D geometric mesh of the physical environment", "Drawing a 2D map", "Finding your location on Google Maps", "Connecting to Wi-Fi"], a: 0, e: "Spatial mapping turns real-world couches and walls into a 3D digital mesh the software can interact with." },
+            { q: "What is 'Environmental Understanding' in MR?", options: ["The headset identifying floors, walls, and tables to properly place holograms", "Knowing the weather outside", "Monitoring the user's mood", "Calculating the room temperature"], a: 0, e: "It allows digital objects to interact with physical barriers correctly." },
+            { q: "What is a 'Spatial Anchor'?", options: ["A specific point in physical space where a hologram is permanently pinned", "A heavy weight attached to the headset", "A software bug", "A type of battery"], a: 0, e: "Spatial anchors allow digital objects to persist in the exact same physical location across sessions." },
+            { q: "What is 'Light Estimation' in AR?", options: ["Matching the lighting and shadows of digital objects to the real-world environment", "Measuring battery life", "Turning on the phone's flashlight", "Calculating file sizes"], a: 0, e: "Light estimation makes AR objects look realistic by adapting to the physical room's lighting." },
+            { q: "What is 'Occlusion' in advanced AR?", options: ["When physical objects block the view of digital objects behind them, adding realism", "Closing the app", "When the screen turns black", "A type of AR marker"], a: 0, e: "Occlusion ensures a digital pet walking behind a real sofa is hidden from view." },
+            { q: "Which sensor is highly beneficial for perfect AR occlusion and depth mapping?", options: ["LiDAR scanner", "Microphone", "Thermometer", "Barometer"], a: 0, e: "LiDAR shoots lasers to map depth instantly and accurately." },
+            { q: "What happens if AR registration fails?", options: ["Digital objects will appear to jitter, float, or slide away from their intended physical locations", "The app deletes itself", "The battery drains instantly", "The camera turns off"], a: 0, e: "Poor registration breaks the illusion of AR by failing to align virtual and real worlds." },
+            { q: "What is 'Sensor Fusion'?", options: ["Combining data from multiple sensors (accelerometer, gyro, camera) to calculate a highly accurate position", "Melting sensors with heat", "Connecting two headsets", "A type of battery"], a: 0, e: "Fusing data eliminates the minor errors and drift present in individual sensors." },
+            { q: "What happens if there is 'Drift' in a tracking system?", options: ["The virtual world slowly rotates or shifts away from the physical world alignment over time", "The user gets hot", "The controllers disconnect", "The screen turns blue"], a: 0, e: "Drift is an accumulation of small tracking errors that ruins positional accuracy." },
+            { q: "What does 'Volumetric Capture' achieve?", options: ["Capturing a performance using multiple cameras to create a 3D hologram that can be viewed from any angle", "A flat photograph", "A voice recording", "A text document"], a: 0, e: "Volumetric video allows users to physically walk around a recorded person in AR/VR." },
+
+            // 61-90: Hardware & Displays
+            { q: "Which display technology is highly preferred in premium VR headsets for its deep blacks and fast response?", options: ["OLED / Micro-OLED", "LCD", "CRT", "E-ink"], a: 0, e: "OLED displays offer pure blacks and fast pixel switching, preventing blurring." },
+            { q: "Why do VR headsets use specialized lenses?", options: ["To bend the light so the user's eyes can focus on a screen that is only an inch away", "To make the screen darker", "To protect the screen from scratching", "To record video"], a: 0, e: "Lenses warp the light to simulate distance; without them, the eye cannot focus so close." },
+            { q: "What is a 'Fresnel Lens'?", options: ["A lightweight lens with concentric ridges that focuses light in a short distance", "A lens used to zoom in on distant objects", "A contact lens", "A camera lens"], a: 0, e: "Fresnel lenses allow headsets to be much thinner and lighter than traditional glass lenses." },
+            { q: "What is the advantage of 'Pancake Lenses' over Fresnel lenses?", options: ["They fold light multiple times, allowing the headset to be significantly thinner and lighter", "They taste better", "They are cheaper to make", "They lower the resolution"], a: 0, e: "Pancake lenses drastically reduce the required distance between the screen and the lens." },
+            { q: "What is the 'Sweet Spot' of a VR lens?", options: ["The center of the lens where the image is the sharpest and most clear", "A place to put your fingers", "The area where the battery is located", "The most comfortable part of the strap"], a: 0, e: "Adjusting your IPD puts your pupils directly in the sweet spot for maximum clarity." },
+            { q: "What defines a 'Tethered' VR headset?", options: ["It must be physically connected to a powerful PC or console via a cable to process graphics", "It runs on AA batteries", "It connects to smartphones", "It requires no external hardware"], a: 0, e: "Tethered headsets rely on external computing power (e.g., Valve Index, PSVR2)." },
+            { q: "What defines a 'Standalone' VR headset?", options: ["A wireless headset with all computing hardware, battery, and tracking built directly into the device", "A headset that needs a PC", "A phone placed in a cardboard box", "A pair of AR glasses"], a: 0, e: "Standalone headsets (e.g., Meta Quest) are all-in-one portable devices." },
+            { q: "What is the primary display method for Smart Glasses like Google Glass?", options: ["Heads-Up Display (HUD) using a small prism", "Large VR screens", "Holographic projections", "Mobile phone screens"], a: 0, e: "Smart glasses reflect a simple digital screen into the user's peripheral vision via a HUD." },
+            { q: "Which headset is widely considered the pioneer of standalone Mixed Reality?", options: ["Microsoft HoloLens", "Oculus Rift", "Google Cardboard", "Sony PlayStation VR"], a: 0, e: "HoloLens was the first major standalone holographic MR computer." },
+            { q: "What is the primary focus of Apple's Vision Pro headset?", options: ["Spatial Computing with seamless integration of iOS apps and high-fidelity passthrough MR", "Cheap gaming", "Only projecting 2D movies", "Recording audio podcasts"], a: 0, e: "Apple focuses on high-end 'Spatial Computing', blending digital apps into the physical workspace." },
+            { q: "What does 'Passthrough AR' mean?", options: ["Using high-res color cameras on an enclosed VR headset to show the real world and overlaying digital objects on that video feed", "Looking through a clear glass window", "Passing the headset to a friend", "A type of screen protector"], a: 0, e: "Passthrough AR uses screens instead of transparent glass to display the real world." },
+            { q: "What is 'Eye Tracking' used for in modern XR headsets?", options: ["Foveated rendering and intuitive UI selection", "Spying on users", "Measuring screen brightness", "Tracking physical steps"], a: 0, e: "Eye tracking knows exactly where you look, allowing menus to react to your gaze." },
+            { q: "What is 'Foveated Rendering'?", options: ["Rendering the exact spot the user is looking at in high resolution, and the peripheral vision in lower resolution to save GPU power", "Rendering the whole screen at low quality", "A way to render audio", "Rendering only black and white"], a: 0, e: "Foveated rendering mimics the human eye, drastically reducing processing loads." },
+            { q: "How is 'Hand Tracking' achieved without physical controllers?", options: ["Using inward and outward-facing cameras to detect and track the joints of the user's bare hands", "Using a mouse", "Voice recognition", "Foot pedals"], a: 0, e: "Computer vision algorithms map the articulation of hands for controller-free input." },
+            { q: "What is a 'Haptic Vest'?", options: ["A wearable device that uses vibration motors to let users physically feel impacts or touch in VR", "A vest that cools the player down", "A bulletproof vest", "A vest that acts as a battery"], a: 0, e: "Haptics increase immersion by mapping in-game events to physical sensations on the body." },
+            { q: "Which human sense is currently the most difficult and expensive to simulate convincingly in VR?", options: ["Touch/Force Feedback", "Sight", "Hearing", "Smell"], a: 0, e: "Stopping a user's physical hand from moving through a virtual table requires massive robotic exoskeletons." },
+            { q: "What does 'Spatial Audio' mimic?", options: ["How human ears perceive sounds originating from specific distances and 3D directions in the real world", "A radio broadcast", "Underwater sounds", "A flat stereo track"], a: 0, e: "Spatial audio adjusts volume and delay to trick the brain into hearing a sound exactly where a virtual object is." },
+            { q: "What is a 'Brain-Computer Interface' (BCI) in relation to XR?", options: ["Technology that allows users to control XR environments or interact directly using brainwave signals", "A smart keyboard", "A psychology test", "A type of AI chatbot"], a: 0, e: "BCIs aim to let users navigate AR menus just by thinking." },
+            { q: "What does the 'Holographic Processing Unit' (HPU) do in the HoloLens?", options: ["It is a custom coprocessor designed to handle the massive sensor data of SLAM efficiently", "A graphics card for PC", "A new type of RAM", "A quantum computer"], a: 0, e: "The HPU offloads spatial mapping work from the CPU, keeping the headset running smoothly." },
+            { q: "What is the function of a VR 'Controller'?", options: ["A handheld physical device that translates hand movements and button presses into the virtual world", "The main processor", "The strap that holds the headset", "The charging cable"], a: 0, e: "Controllers provide precise physical inputs and haptic feedback." },
+            { q: "What is a 'Digital Guardian' or 'Chaperone' system?", options: ["A virtual grid that appears when a user gets too close to a physical wall or obstacle to prevent injury", "A parental control lock", "An AI assistant", "An antivirus software"], a: 0, e: "Safety boundaries are vital for room-scale VR to prevent physical collisions." },
+            { q: "What is the primary function of Google Cardboard?", options: ["To provide a highly affordable, entry-level 3 DoF VR experience by using a smartphone as the screen", "To store items", "To act as an AR glass", "To charge phones"], a: 0, e: "Google Cardboard democratized VR by turning smartphones into basic headsets." },
+            { q: "Why is tracking 'Six Degrees of Freedom' (6DoF) computationally expensive?", options: ["It requires constant real-time processing of camera feeds and sensor data to map the environment perfectly", "It requires tracking the internet speed", "It downloads huge files", "It drains the battery via Bluetooth"], a: 0, e: "Running SLAM algorithms at 90+ FPS requires immense mathematical processing." },
+            { q: "What represents a major engineering barrier to widespread AR glasses adoption?", options: ["The tradeoff between battery life, processing power, heat dissipation, and a lightweight form factor", "They are too cheap", "They have too many games", "They are too easy to use"], a: 0, e: "Packing computer-level power into normal-looking glasses without them overheating or dying in 10 minutes is incredibly hard." },
+            { q: "What is 'Anti-aliasing' used for in XR graphics?", options: ["To smooth out the jagged, 'stair-step' edges of 3D objects, improving visual realism", "To speed up rendering", "To change the lighting", "To add sound effects"], a: 0, e: "Because screens are close to the eyes, jagged pixels are very distracting. Anti-aliasing softens these edges." },
+            { q: "Which technique uses AI to upscale lower-resolution images in real-time to save GPU power?", options: ["DLSS (Deep Learning Super Sampling) or FSR", "Ray Tracing", "Photogrammetry", "Rigging"], a: 0, e: "DLSS renders the game at a low resolution and uses AI to make it look high-res, crucial for VR performance." },
+            { q: "What does 'Field of Regard' mean?", options: ["The total area a user can view by turning their head and body (360 degrees in VR)", "How much you respect the technology", "The screen size", "The camera resolution"], a: 0, e: "While FOV is what you see at one moment, Field of Regard is the total available environment." },
+            { q: "What is a 360-degree camera?", options: ["A camera that records video in all directions simultaneously, allowing the viewer to look around later", "A camera that takes high-resolution flat photos", "A 3D audio recorder", "A GPS tracker"], a: 0, e: "360 cameras stitch multiple wide-angle lenses together to create spherical video." },
+            { q: "What is the difference between 360 Video and True VR?", options: ["True VR allows 6 DoF movement around 3D objects; 360 video is just a flat sphere you look around from a fixed point", "360 video is interactive", "There is no difference", "360 video has better graphics"], a: 0, e: "You cannot walk 'behind' an object in a 360 video." },
+            { q: "What is the 'Holy Grail' of XR hardware?", options: ["Lightweight, wireless glasses that look like normal eyewear but can instantly switch between full VR and transparent AR", "A massive room-sized computer", "A headset that requires no battery", "A smartphone app"], a: 0, e: "The industry is striving for a single, comfortable, all-day wearable device." },
+
+            // 91-120: Software, SDKs, and Development
+            { q: "Which game engine is overwhelmingly the most popular for developing XR applications?", options: ["Unity 3D", "Unreal Engine", "Godot", "CryEngine"], a: 0, e: "Unity 3D commands the vast majority of the XR market due to its ease of use and extensive libraries." },
+            { q: "Which other major 3D engine is heavily used for high-fidelity AAA VR games?", options: ["Unreal Engine", "Construct 3", "GameMaker Studio", "RPG Maker"], a: 0, e: "Unreal Engine is renowned for its high-end, realistic graphics." },
+            { q: "What does SDK stand for?", options: ["Software Development Kit", "Software Design Kit", "Standard Development Kernel", "Simulated Data Kit"], a: 0, e: "An SDK provides the tools, libraries, and APIs needed to build apps for specific platforms." },
+            { q: "Which SDK is the standard for building AR apps on Apple iOS devices?", options: ["ARKit", "ARCore", "Vuforia", "Oculus SDK"], a: 0, e: "ARKit is Apple's proprietary framework for augmented reality on iPhones and iPads." },
+            { q: "Which SDK is the standard for building AR apps on Android devices?", options: ["ARCore", "ARKit", "Kinect", "Holokit"], a: 0, e: "ARCore is Google's AR platform designed for Android devices." },
+            { q: "Which popular AR platform is known for its excellent Image Target tracking across multiple platforms?", options: ["Vuforia", "React Native", "TensorFlow", "WordPress"], a: 0, e: "Vuforia is an enterprise-level AR SDK heavily used in Unity for recognizing specific 2D images." },
+            { q: "What is 'OpenXR'?", options: ["A royalty-free, open standard API that allows developers to create XR apps that work across multiple different headsets", "A specific brand of headset", "A closed ecosystem", "A VR game"], a: 0, e: "OpenXR solves platform fragmentation, allowing one codebase to run on Meta, HTC, Valve, etc." },
+            { q: "In 3D development, what is a 'Mesh'?", options: ["The structural framework (wireframe) consisting of vertices, edges, and faces that makes up a 3D model", "A network connection", "The color of an object", "The physics engine"], a: 0, e: "A 3D mesh gives an object its physical volumetric shape." },
+            { q: "What is 'Texturing'?", options: ["Wrapping a 2D image over a 3D mesh to give it color, details, and material properties", "Adding physical weight to an object", "Coding the logic", "Recording audio"], a: 0, e: "Textures make a blank 3D mesh look like realistic wood, metal, or skin." },
+            { q: "What is a 'Material' in 3D computer graphics?", options: ["A file that dictates how light interacts with a 3D surface (e.g., making it shiny, metallic, or matte)", "The physical plastic of the headset", "The code that runs the game", "A 2D image"], a: 0, e: "Materials define visual properties like roughness and metallicity." },
+            { q: "What is a 'Rig' or 'Armature'?", options: ["A virtual skeleton placed inside a 3D model to allow it to be animated and moved", "A type of camera", "The lighting setup", "The game's UI"], a: 0, e: "Rigging provides the joints and bones necessary to animate 3D characters." },
+            { q: "What does a 'Physics Engine' do?", options: ["Simulates real-world physical laws like gravity, collisions, and friction for virtual objects", "Handles the internet connection", "Compresses image files", "Generates sound effects"], a: 0, e: "The physics engine ensures that when you drop a virtual ball, it falls and bounces realistically." },
+            { q: "What is the primary function of a 'Collider'?", options: ["To define the physical boundaries of an object so it can bump into other objects", "To make objects visible", "To change colors", "To load levels"], a: 0, e: "Without colliders, virtual hands or objects would just pass right through each other like ghosts." },
+            { q: "In Unity, what component must be attached to an object to apply gravity to it?", options: ["Rigidbody", "Mesh Renderer", "Audio Source", "Light"], a: 0, e: "A Rigidbody tells the physics engine to take control of the object." },
+            { q: "What is 'Raycasting' in VR UI interaction?", options: ["Shooting an invisible virtual laser line from the controller to detect which object the user is pointing at", "Casting a shadow", "Rendering sunlight", "Streaming video"], a: 0, e: "Raycasting is the standard way users point at and click buttons in VR menus from a distance." },
+            { q: "What is 'Gaze-based interaction'?", options: ["Allowing hands-free selection by staring at a button until a timer fills up", "Making the user dizzy", "Recording video with eyes", "Turning off the headset"], a: 0, e: "Gaze interaction is a fundamental accessibility technique when controllers are not available." },
+            { q: "In Unity, what is a 'Prefab'?", options: ["A reusable, pre-configured game object that can be duplicated instantly", "A pre-recorded video", "A user manual", "A type of script"], a: 0, e: "Prefabs save time by allowing developers to create a complex object once and spawn it many times." },
+            { q: "When developing for VR, why is optimizing polygons (low-poly models) important?", options: ["To maintain high frames per second (FPS) because rendering two screens is highly demanding on the GPU", "To make the game look retro", "To save hard drive space only", "It is not important"], a: 0, e: "High polygon counts drop the frame rate, which leads to immediate motion sickness." },
+            { q: "What is 'Baking' in XR lighting?", options: ["Pre-calculating static lighting and shadows and saving them as textures to save real-time rendering performance", "Heating the server", "Creating 3D food models", "Writing code fast"], a: 0, e: "Baked lighting looks highly realistic but costs zero processing power during runtime, essential for mobile VR." },
+            { q: "What is a 'Skybox'?", options: ["A large background cube or sphere wrapping the scene, painted with a texture to look like a distant sky", "A physical box", "A type of cloud storage", "A flying vehicle"], a: 0, e: "Skyboxes provide the illusion of vast environments without rendering millions of distant 3D objects." },
+            { q: "Which programming language is primarily used when developing VR in Unity?", options: ["C# (C-Sharp)", "Python", "C++", "Java"], a: 0, e: "C# is the native scripting language for the Unity game engine." },
+            { q: "Which visual programming system is primarily used in Unreal Engine?", options: ["Blueprints", "JavaScript", "HTML", "Ruby"], a: 0, e: "Blueprints allow developers to create complex logic by connecting visual nodes rather than typing code." },
+            { q: "What is 'WebXR'?", options: ["An API standard allowing VR and AR experiences to run directly in web browsers without downloading apps", "A new web browser", "A type of internet cable", "A cybersecurity protocol"], a: 0, e: "WebXR democratizes immersive tech by letting users click a link and immediately enter VR/AR." },
+            { q: "Which tool allows web developers to build XR experiences using HTML-like tags?", options: ["A-Frame", "PHP", "CSS", "SQL"], a: 0, e: "A-Frame is a popular open-source web framework for building 3D/VR experiences directly in HTML." },
+            { q: "Which format is standard for sharing 3D models across different XR platforms and web viewers?", options: ["glTF / GLB", "JPEG", "MP3", "PDF"], a: 0, e: "glTF (GL Transmission Format) is known as the 'JPEG of 3D', optimized for loading 3D scenes efficiently." },
+            { q: "What is 'Photogrammetry'?", options: ["Taking hundreds of 2D photographs of a real object and using software to stitch them into a highly realistic 3D model", "Taking photos of grams", "A type of Instagram filter", "A VR display technique"], a: 0, e: "Photogrammetry brings real-world artifacts (like statues) into VR with perfect textures." },
+            { q: "What is 'Voxel'?", options: ["A pixel with volume (a 3D pixel) used in some 3D rendering engines like Minecraft", "A type of speaker", "A VR headset brand", "A 2D image format"], a: 0, e: "Voxels are building blocks of 3D space, unlike traditional flat polygons." },
+            { q: "In XR design, what does 'UI/UX' stand for?", options: ["User Interface / User Experience", "Universal Interface / Universal Experience", "Unit Info / Unit Exchange", "Unified Input / Unified eXport"], a: 0, e: "UI/UX design in XR focuses on making 3D menus intuitive and ensuring user comfort." },
+            { q: "What is a 'Diegetic' UI element in VR?", options: ["A UI element that exists within the game world's fiction (like a physical watch on the avatar's wrist)", "A flat menu hovering in the air", "A score counter pinned to the screen", "A loading screen"], a: 0, e: "Diegetic interfaces increase immersion rather than breaking it with floating 2D menus." },
+            { q: "Which UI is generally considered better for immersion: World-locked or Head-locked?", options: ["World-locked UI", "Head-locked UI", "They are identical", "Neither"], a: 0, e: "World-locked UI (buttons hovering in the 3D room) feels natural. Head-locked UI can feel annoying or block vision." },
+
+            // 121-150: Applications, Human Factors, and The Metaverse
+            { q: "How is VR utilized in the Medical Training field?", options: ["Allowing surgeons to practice complex surgeries in a risk-free, simulated 3D environment", "To play games", "To replace doctors completely", "To write prescriptions"], a: 0, e: "VR simulations let medical students practice procedures repeatedly without risking patient lives." },
+            { q: "How does AR aid in maintenance and repair?", options: ["By overlaying step-by-step repair instructions and diagrams directly onto the physical machine", "By replacing physical tools", "By playing relaxing music", "By generating invoices"], a: 0, e: "Technicians can look at an engine and see arrows and schematics superimposed on the actual parts." },
+            { q: "What is 'Exposure Therapy' in VR psychology?", options: ["Safely exposing patients to their phobias in a controlled virtual environment to reduce anxiety", "Exposing the headset to light", "Exposing code to open source", "A marketing tactic"], a: 0, e: "VR is a proven psychological tool to treat PTSD and phobias." },
+            { q: "How does AR benefit the Real Estate industry?", options: ["Allowing buyers to see a virtually furnished empty apartment through their phone", "By building actual houses", "By tracking property taxes", "By replacing physical keys"], a: 0, e: "AR helps clients visualize the potential of a space before buying." },
+            { q: "What is a 'Virtual Tour'?", options: ["A 360-degree interactive simulation of an existing location, usually composed of panoramic images", "A text description of a place", "A video game", "A zoom meeting"], a: 0, e: "Virtual tours allow remote exploration of physical spaces, heavily used in tourism and real estate." },
+            { q: "How are designers in the Automotive industry using MR?", options: ["To visualize and modify full-scale 3D holographic car models cooperatively", "To drive the car on the road", "To listen to the radio", "To print 2D blueprints"], a: 0, e: "MR allows remote teams of engineers to walk around and tweak a virtual car together." },
+            { q: "How is AR revolutionizing Retail and E-commerce?", options: ["Through 'Try-before-you-buy' features, letting users see how furniture fits in their room", "By closing physical stores", "By printing receipts", "By creating virtual currency"], a: 0, e: "AR reduces return rates by letting consumers verify product fit and aesthetics in their own homes." },
+            { q: "How can VR be used in Education?", options: ["Taking students on virtual field trips to ancient Rome or inside the human body", "To replace physical textbooks entirely", "To prevent students from talking", "To write code"], a: 0, e: "VR provides experiential learning, bringing abstract concepts or unreachable places to life." },
+            { q: "What is the benefit of using VR for hazardous safety training (e.g., firefighting)?", options: ["It provides muscle memory and stress training without putting employees in actual physical danger", "It is cheaper than a book", "It takes less time to code", "It is legally required everywhere"], a: 0, e: "Hazardous training in VR ensures workers know exactly what to do in emergencies." },
+            { q: "Which of the following is a prominent use of AR in Sports Broadcasting?", options: ["Superimposing the yellow first-down line on a football field", "Making the ball disappear", "Broadcasting in black and white", "Controlling player movements"], a: 0, e: "Broadcasters use AR to place informative graphics physically onto the field of play." },
+            { q: "How is VR utilized in the Rehabilitation of stroke patients?", options: ["By providing gamified, repetitive physical tasks that motivate patients to regain motor skills", "To measure heart rate", "By performing surgery", "By watching movies"], a: 0, e: "VR gamifies physical therapy, making the grueling repetition of rehab more engaging." },
+            { q: "What is a 'V-Tuber' (Virtual YouTuber)?", options: ["An entertainer who uses motion capture to control an animated 2D or 3D avatar for live streaming", "A video about VR", "A YouTube engineer", "A specific type of camera"], a: 0, e: "VTubing uses real-time XR tracking tech to map human expressions onto anime characters." },
+            { q: "What role does XR play in 'Remote Assistance'?", options: ["An expert on a PC can see through a worker's AR glasses and draw arrows that appear on the physical machine", "Sending emails to a helpdesk", "Automated chatbots", "Phone calls only"], a: 0, e: "Remote assistance AR drastically reduces downtime by letting experts visually guide on-site workers." },
+            { q: "What is an application of MR in Surgery?", options: ["Overlaying a patient's 3D MRI scans directly onto their body during surgery to guide incisions", "Playing games during breaks", "Replacing the scalpel", "Writing the bill"], a: 0, e: "MR gives surgeons 'x-ray vision' by perfectly registering internal scans onto the physical anatomy." },
+            { q: "How is VR used in the Fitness industry?", options: ["Turning cardio workouts into immersive games where players punch targets to the beat of music", "To track steps on a treadmill", "To weigh the user", "To buy protein powder"], a: 0, e: "Apps like Beat Saber use VR to make intense physical exercise feel like playing a game." },
+            { q: "What is 'Asymmetric VR'?", options: ["A multiplayer game where one player is in VR and others interact via a standard PC, phone, or TV", "A broken headset", "A game with no symmetry", "Single-player VR"], a: 0, e: "Asymmetric games bridge the gap between people in headsets and people using normal screens." },
+            { q: "What is the 'Metaverse'?", options: ["A proposed highly immersive, interconnected 3D virtual universe where people work, play, and socialize", "A new type of hardware", "A specific video game made by Facebook", "A cryptocurrency"], a: 0, e: "The Metaverse is envisioned as the next 3D iteration of the internet." },
+            { q: "Which concept is crucial for the Metaverse to allow users to move assets between different virtual worlds?", options: ["Interoperability", "Isolation", "High latency", "Monopoly"], a: 0, e: "Interoperability allows different systems to connect and share avatars and items seamlessly." },
+            { q: "What defines an 'Avatar' in VR?", options: ["The digital representation or persona of the user in the virtual world", "The user's password", "The headset hardware", "The game's map"], a: 0, e: "An avatar is your virtual body that others see and interact with." },
+            { q: "What is the 'Uncanny Valley'?", options: ["A psychological response where a 3D avatar looks almost human but slightly off, causing revulsion", "A level in a video game", "A deep canyon in a VR app", "A rendering error"], a: 0, e: "Highly realistic avatars that lack perfect micro-expressions fall into the creepy uncanny valley." },
+            { q: "Which Microsoft application allows workers to collaborate using avatars and spatial audio inside Teams?", options: ["Microsoft Mesh", "Word", "Excel", "PowerPoint"], a: 0, e: "Microsoft Mesh is the enterprise mixed reality platform designed to power corporate collaboration." },
+            { q: "What does 'Spatial Computing' refer to?", options: ["Interacting with computers in 3D physical space rather than via 2D flat screens", "Computing done in outer space", "Using large server rooms", "Mathematical calculations only"], a: 0, e: "Spatial computing treats the 3D space around the user as the operating system." },
+            { q: "What is a 'Digital Twin'?", options: ["A precise 1:1 virtual replica of a physical entity (like a factory), updated with real-time data", "A Virtual Clone", "A Meta-copy", "A Holo-duplicate"], a: 0, e: "Digital Twins are used for simulation, testing, and monitoring physical assets in VR." },
+            { q: "What represents a major ethical concern regarding Augmented Reality glasses in public spaces?", options: ["The ability to secretly record video or use facial recognition on strangers without consent", "They look weird", "They are too expensive", "They require Wi-Fi"], a: 0, e: "Always-on cameras pointing at the public raise severe privacy and surveillance issues." },
+            { q: "What is a major privacy concern regarding XR headsets in the home?", options: ["The massive collection of biometric data, eye tracking, and physical room mapping", "Too much hard drive space used", "Headsets breaking easily", "Games being too expensive"], a: 0, e: "XR headsets map users' homes and track their micro-movements, raising unprecedented privacy issues." },
+            { q: "How can XR positively impact the environment/sustainability?", options: ["It can drastically reduce the need for physical travel, commuting, and physical prototyping", "By using a lot of plastic", "It prints a lot of paper", "It harms the ozone layer"], a: 0, e: "Virtual collaboration and digital twins cut down on industrial waste and corporate travel emissions." },
+            { q: "Which is a major accessibility challenge in current VR?", options: ["Many applications require two fully functional hands and full body mobility to complete tasks", "Games are too long", "Headsets have no audio", "Screens are too small"], a: 0, e: "Physical requirements often exclude users with mobility impairments." },
+            { q: "What is 'Embodied Cognition' in the context of VR learning?", options: ["The theory that people learn and remember better when they physically use their body to perform a task", "Learning by reading text", "A type of AI", "Learning while sleeping"], a: 0, e: "VR leverages muscle memory and spatial memory, making training highly effective." },
+            { q: "Why is 5G technology considered critical for the future of XR?", options: ["It offers the high bandwidth and ultra-low latency required for real-time cloud rendering", "It provides smaller headsets", "It improves screen resolution", "It extends battery life"], a: 0, e: "5G enables heavy processing to happen in the cloud, streaming graphics to lightweight glasses." },
+            { q: "What is the primary benefit of Cloud Rendering for XR?", options: ["It offloads heavy graphical processing to remote servers, allowing thin glasses to display ultra-realistic graphics", "It uses less data", "It works without the internet", "It improves battery life offline"], a: 0, e: "Cloud XR acts like Netflix, streaming interactive 3D computing directly to the headset." }
         ];
 
         let currentIdx = 0, score = 0, answered = false;
-        function startQuiz() { document.getElementById('start-screen').classList.add('hidden'); document.getElementById('quiz-screen').classList.remove('hidden'); loadQuestion(); }
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            
+            const totalQuestions = questions.length;
+            document.getElementById('progress-text').innerText = `Question 1/${totalQuestions}`;
+            document.getElementById('final-total').innerText = `Correct out of ${totalQuestions}`;
+            
+            // Randomize options for each question initially
+            questions.forEach(q => {
+                const originalCorrect = q.options[q.a];
+                
+                // Fisher-Yates shuffle for options
+                for (let i = q.options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [q.options[i], q.options[j]] = [q.options[j], q.options[i]];
+                }
+                
+                // Find new index of the correct answer
+                q.a = q.options.indexOf(originalCorrect);
+            });
+
+            loadQuestion();
+        }
+
         function loadQuestion() {
             const q = questions[currentIdx];
+            const totalQuestions = questions.length;
+            
             document.getElementById('question-text').innerText = q.q;
-            document.getElementById('progress-text').innerText = `Q ${currentIdx + 1}/50`;
-            document.getElementById('progress-bar').style.width = `${((currentIdx + 1) / 50) * 100}%`;
-            const container = document.getElementById('options-container'); container.innerHTML = '';
+            document.getElementById('progress-text').innerText = `Question ${currentIdx + 1}/${totalQuestions}`;
+            document.getElementById('progress-bar').style.width = `${((currentIdx + 1) / totalQuestions) * 100}%`;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
             q.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-100 hover:border-amber-200 hover:bg-amber-50 text-sm font-medium transition-all";
-                btn.innerText = opt; btn.onclick = () => selectOption(i, btn); container.appendChild(btn);
+                btn.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-100 hover:border-emerald-200 hover:bg-emerald-50 font-medium text-sm text-slate-700 transition-all";
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(i, btn);
+                container.appendChild(btn);
             });
-            document.getElementById('explanation-box').classList.add('hidden'); document.getElementById('next-btn').classList.add('hidden'); answered = false;
+            
+            document.getElementById('explanation-box').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+            answered = false;
         }
+
         function selectOption(idx, btn) {
-            if (answered) return; answered = true; const q = questions[currentIdx];
+            if (answered) return;
+            answered = true;
+            
+            const q = questions[currentIdx];
             const allBtns = document.querySelectorAll('#options-container button');
-            if (idx === q.a) { score++; btn.classList.add('border-green-500', 'bg-green-50', 'text-green-700'); document.getElementById('score-text').innerText = `Score: ${score}`; }
-            else { btn.classList.add('border-red-500', 'bg-red-50', 'text-red-700'); allBtns[q.a].classList.add('border-green-500', 'bg-green-50', 'text-green-700'); }
-            document.getElementById('explanation-box').innerHTML = `<strong>Explanation:</strong> ${q.e}`;
-            document.getElementById('explanation-box').classList.remove('hidden'); document.getElementById('next-btn').classList.remove('hidden');
+            
+            if (idx === q.a) {
+                score++;
+                btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-700');
+                document.getElementById('score-text').innerText = `Score: ${score}`;
+            } else {
+                btn.classList.add('border-red-500', 'bg-red-50', 'text-red-700');
+                allBtns[q.a].classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-700');
+            }
+            
+            const exp = document.getElementById('explanation-box');
+            exp.innerHTML = `<strong>Explanation:</strong> ${q.e}`;
+            exp.classList.remove('hidden');
+            document.getElementById('next-btn').classList.remove('hidden');
         }
+
         function nextQuestion() {
-            if (currentIdx < questions.length - 1) { currentIdx++; loadQuestion(); }
-            else { document.getElementById('quiz-screen').classList.add('hidden'); document.getElementById('result-screen').classList.remove('hidden'); document.getElementById('final-score').innerText = score; }
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+            }
         }
     </script>
 </body>
